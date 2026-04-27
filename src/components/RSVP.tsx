@@ -26,7 +26,7 @@ export default function RSVP() {
       id="rsvp"
       className="py-24 px-4 relative overflow-hidden"
       style={{
-        background: 'linear-gradient(160deg, #2D463E 0%, #1C2B27 60%, #162220 100%)',
+        background: 'linear-gradient(160deg, #FDFBF7 0%, #F5EFEB 100%)',
       }}
     >
       {/* Background ornaments */}
@@ -56,27 +56,26 @@ export default function RSVP() {
           <p className="text-xs tracking-[0.25em] uppercase mb-2" style={{ color: '#C9A84C', fontFamily: 'Lato' }}>
             Please Respond
           </p>
-          <h2 className="font-serif font-light text-4xl mb-2" style={{ color: '#FDFBF7' }}>
+          <h2 className="font-serif font-light text-4xl mb-2" style={{ color: '#2D463E' }}>
             RSVP
           </h2>
           <div
             className="divider-ornament mb-2"
             style={{ maxWidth: '220px', margin: '0 auto' }}
           >
-            <span className="text-xs tracking-[0.25em] uppercase" style={{ color: 'rgba(253,251,247,0.5)', fontFamily: 'Lato' }}>
+            <span className="text-xs tracking-[0.25em] uppercase" style={{ color: '#6B7B73', fontFamily: 'Lato' }}>
               kindly reply by May 1st
             </span>
           </div>
         </div>
 
-        {/* Glass card */}
+        {/* Solid Dark Green Card */}
         <div
-          className="glass rounded-3xl p-7 relative"
+          className="rounded-3xl p-8 relative"
           style={{
-            background: 'rgba(253,251,247,0.07)',
-            border: '1px solid rgba(201,168,76,0.25)',
-            backdropFilter: 'blur(24px)',
-            boxShadow: '0 8px 40px rgba(0,0,0,0.25)',
+            background: 'linear-gradient(145deg, #2D463E 0%, #1C2B27 100%)',
+            border: '1px solid rgba(201,168,76,0.3)',
+            boxShadow: '0 20px 60px rgba(0,0,0,0.25)',
           }}
         >
           <AnimatePresence mode="wait">
@@ -92,8 +91,8 @@ export default function RSVP() {
                 <div>
                   <label
                     htmlFor="rsvp-name"
-                    className="block text-xs tracking-widest uppercase mb-2"
-                    style={{ color: 'rgba(253,251,247,0.6)', fontFamily: 'Lato' }}
+                    className="block text-xs tracking-[0.2em] uppercase mb-2"
+                    style={{ color: '#C9A84C', fontFamily: 'Lato' }}
                   >
                     Your Name
                   </label>
@@ -104,20 +103,23 @@ export default function RSVP() {
                     value={name}
                     onChange={e => setName(e.target.value)}
                     required
-                    className="form-input"
+                    className="form-input transition-all"
                     style={{
-                      background: 'rgba(253,251,247,0.1)',
-                      border: '1px solid rgba(201,168,76,0.3)',
+                      background: 'rgba(253,251,247,0.05)',
+                      border: '1px solid rgba(253,251,247,0.2)',
                       color: '#FDFBF7',
+                      outline: 'none',
                     }}
+                    onFocus={e => e.target.style.borderColor = '#C9A84C'}
+                    onBlur={e => e.target.style.borderColor = 'rgba(253,251,247,0.2)'}
                   />
                 </div>
 
                 {/* Attendance */}
                 <div>
                   <label
-                    className="block text-xs tracking-widest uppercase mb-3"
-                    style={{ color: 'rgba(253,251,247,0.6)', fontFamily: 'Lato' }}
+                    className="block text-xs tracking-[0.2em] uppercase mb-3"
+                    style={{ color: '#C9A84C', fontFamily: 'Lato' }}
                   >
                     Will you attend?
                   </label>
@@ -133,17 +135,18 @@ export default function RSVP() {
                         className="py-3 px-4 rounded-xl text-sm transition-all duration-300 flex flex-col items-center gap-1"
                         style={{
                           background: attendance === opt.value
-                            ? 'rgba(201,168,76,0.25)'
-                            : 'rgba(253,251,247,0.07)',
+                            ? 'rgba(201,168,76,0.15)'
+                            : 'transparent',
                           border: attendance === opt.value
-                            ? '1px solid rgba(201,168,76,0.7)'
+                            ? '1px solid #C9A84C'
                             : '1px solid rgba(253,251,247,0.15)',
-                          color: attendance === opt.value ? '#F5E6BE' : 'rgba(253,251,247,0.6)',
+                          color: attendance === opt.value ? '#FDFBF7' : 'rgba(253,251,247,0.5)',
                           fontFamily: 'Lato',
+                          fontWeight: attendance === opt.value ? 'bold' : 'normal',
                           transform: attendance === opt.value ? 'scale(1.02)' : 'scale(1)',
                         }}
                       >
-                        <span style={{ fontSize: '1rem', color: '#C9A84C' }}>{opt.icon}</span>
+                        <span style={{ fontSize: '1rem', color: attendance === opt.value ? '#C9A84C' : 'rgba(253,251,247,0.4)' }}>{opt.icon}</span>
                         <span>{opt.label}</span>
                       </button>
                     ))}
@@ -168,7 +171,7 @@ export default function RSVP() {
                     fontFamily: 'Cormorant Garamond, serif',
                     fontWeight: 600,
                     boxShadow: name.trim() && attendance
-                      ? '0 4px 20px rgba(201,168,76,0.35)'
+                      ? '0 6px 20px rgba(201,168,76,0.45)'
                       : 'none',
                   }}
                 >
@@ -205,7 +208,7 @@ export default function RSVP() {
                 >
                   ✦
                 </motion.div>
-                <h3 className="font-serif text-2xl mb-2" style={{ color: '#F5E6BE' }}>
+                <h3 className="font-serif text-2xl mb-2" style={{ color: '#FDFBF7' }}>
                   {attendance === 'yes' ? 'We\'ll see you there!' : 'We\'ll miss you!'}
                 </h3>
                 <p
@@ -214,7 +217,7 @@ export default function RSVP() {
                 >
                   {attendance === 'yes' ? 'We are so excited to celebrate with you' : 'Thank you so much'}
                 </p>
-                <p className="text-sm" style={{ color: 'rgba(253,251,247,0.55)', fontFamily: 'Lato' }}>
+                <p className="text-sm" style={{ color: 'rgba(253,251,247,0.7)', fontFamily: 'Lato' }}>
                   Thank you, {name.split(' ')[0]}. Your RSVP has been received.
                 </p>
               </motion.div>
