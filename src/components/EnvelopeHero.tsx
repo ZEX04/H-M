@@ -63,10 +63,10 @@ export default function EnvelopeHero() {
         className="text-center mb-8 z-10"
       >
         <p
-          className="font-arabic text-3xl tracking-wide mb-2"
-          style={{ color: '#2D463E', direction: 'rtl' }}
+          className="font-serif italic text-3xl tracking-wide mb-2"
+          style={{ color: '#2D463E' }}
         >
-          بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ
+          With joyful hearts
         </p>
         <div className="divider-ornament" style={{ color: '#C9A84C', maxWidth: '220px', margin: '0 auto' }}>
           <span className="text-xs tracking-[0.3em] uppercase" style={{ color: '#6B7B73', fontFamily: 'Lato' }}>
@@ -202,23 +202,23 @@ export default function EnvelopeHero() {
                       className="font-serif font-light leading-none tracking-wide"
                       style={{ fontSize: 'clamp(2rem, 8vw, 2.8rem)', color: '#2D463E' }}
                     >
-                      Layla
+                      Mohamed
                     </h1>
                     <div className="divider-ornament my-2" style={{ maxWidth: '160px', margin: '8px auto' }}>
-                      <span className="font-arabic text-lg" style={{ color: '#C9A84C' }}>و</span>
+                      <span className="font-serif italic text-xl" style={{ color: '#C9A84C' }}>&amp;</span>
                     </div>
                     <h1
                       className="font-serif font-light leading-none tracking-wide"
                       style={{ fontSize: 'clamp(2rem, 8vw, 2.8rem)', color: '#2D463E' }}
                     >
-                      Omar
+                      Hind
                     </h1>
                   </div>
 
                   {/* Date */}
                   <div className="text-center mt-4">
                     <p className="text-xs tracking-[0.25em] uppercase" style={{ color: '#6B7B73', fontFamily: 'Lato' }}>
-                      Friday · 15 August 2025
+                      Friday · 22 May 2026
                     </p>
                     <p className="font-serif italic text-sm mt-1" style={{ color: '#C9A84C' }}>
                       Cairo, Egypt

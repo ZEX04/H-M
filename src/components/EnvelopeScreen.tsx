@@ -118,13 +118,13 @@ function WaxSeal() {
           fontFamily: "'Playfair Display', serif",
           fontStyle: 'italic',
           fontWeight: 700,
-          fontSize: '46px',
+          fontSize: '44px',
           color: '#B69A89',
           letterSpacing: '0.05em',
           textShadow: '2px 2px 3px rgba(0,0,0,0.7), -1px -1px 2px rgba(255,255,255,0.6)',
           zIndex: 10
         }}>
-          L&amp;O
+          M&amp;H
         </span>
       </div>
     </div>
@@ -151,11 +151,10 @@ export default function EnvelopeScreen({ onDone }: EnvelopeScreenProps) {
       animate={phase === 'fading' ? { opacity: 0 } : { opacity: 1 }}
       transition={phase === 'fading' ? { duration: 0.8, ease: 'easeInOut' } : {}}
     >
-      {/* Preload luxury fonts immediately */}
       <style>
         {`
-          @import url('https://fonts.googleapis.com/css2?family=Amiri:ital@0;1&family=Playfair+Display:ital,wght@1,700&display=swap');
-          .arabic-text { font-family: 'Amiri', serif; font-weight: 700; font-style: italic; }
+          @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,600;1,700&display=swap');
+          .english-display { font-family: 'Playfair Display', serif; font-weight: 600; font-style: italic; }
         `}
       </style>
 
@@ -242,23 +241,25 @@ export default function EnvelopeScreen({ onDone }: EnvelopeScreenProps) {
            animate={isOpening ? { opacity: 0, y: 15 } : { opacity: 1, y: 0 }}
            transition={{ duration: 0.4, delay: isOpening ? 0 : 0.3 }}
         >
-          <p className="arabic-text" style={{
-            fontSize: 'clamp(2rem, 9vw, 2.8rem)',
+          <p className="english-display" style={{
+            fontSize: 'clamp(1.2rem, 5vw, 1.6rem)',
             color: '#EBDDCA',
-            // Heavy gold foil effect: light right/bottom edge, dark top/left ink edge, massive soft drop shadow
+            letterSpacing: '0.05em',
             textShadow: '1px 1px 0 rgba(255,255,255,0.2), -1px -1px 0 rgba(100,60,30,0.6), 2px 4px 6px rgba(0,0,0,0.7), 0 8px 16px rgba(0,0,0,0.4)',
             lineHeight: 1.2
           }}>
-            هذه الدعوة
+            You are joyfully invited
           </p>
-          <p className="arabic-text" style={{
-            fontSize: 'clamp(1.5rem, 6vw, 2rem)',
+          <p className="english-display" style={{
+            fontSize: 'clamp(0.9rem, 3.5vw, 1.2rem)',
             color: '#D8C3AC',
-            marginTop: '0.25rem',
+            marginTop: '0.4rem',
+            letterSpacing: '0.1em',
+            textTransform: 'lowercase',
             textShadow: '1px 1px 0 rgba(255,255,255,0.15), -1px -1px 0 rgba(100,60,30,0.5), 2px 3px 6px rgba(0,0,0,0.7)',
             lineHeight: 1.4
           }}>
-            خاصة لك
+            to celebrate with us
           </p>
         </motion.div>
 

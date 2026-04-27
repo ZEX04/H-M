@@ -44,10 +44,10 @@ export default function HeroInvitation({ visible }: HeroInvitationProps) {
           initial={{ opacity: 0, y: -20 }}
           animate={visible ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.4, duration: 0.9 }}
-          className="font-arabic text-2xl mb-6"
-          style={{ color: 'rgba(220,205,185,0.85)', direction: 'rtl', letterSpacing: '0.05em' }}
+          className="font-serif italic text-2xl mb-6"
+          style={{ color: 'rgba(220,205,185,0.85)', letterSpacing: '0.05em' }}
         >
-          بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ
+          With joyful hearts
         </motion.p>
 
         {/* "Together with their families" */}
@@ -58,10 +58,10 @@ export default function HeroInvitation({ visible }: HeroInvitationProps) {
           className="text-xs tracking-[0.3em] uppercase mb-8"
           style={{ color: 'rgba(255,255,255,0.55)', fontFamily: 'Lato' }}
         >
-          نوس كازاموس
+          we are getting married
         </motion.p>
 
-        {/* Name — Layla */}
+        {/* Name — Mohamed */}
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={visible ? { opacity: 1, y: 0 } : {}}
@@ -69,7 +69,7 @@ export default function HeroInvitation({ visible }: HeroInvitationProps) {
           className="font-serif italic font-light leading-none"
           style={{ fontSize: 'clamp(3.5rem, 14vw, 5rem)', color: '#FFFFFF', lineHeight: 1.05, textShadow: '0 2px 30px rgba(0,0,0,0.4)' }}
         >
-          Layla
+          Mohamed
         </motion.h1>
 
         {/* Ampersand */}
@@ -91,7 +91,7 @@ export default function HeroInvitation({ visible }: HeroInvitationProps) {
           className="font-serif italic font-light leading-none"
           style={{ fontSize: 'clamp(3.5rem, 14vw, 5rem)', color: '#FFFFFF', lineHeight: 1.05, textShadow: '0 2px 30px rgba(0,0,0,0.4)' }}
         >
-          Omar
+          Hind
         </motion.h1>
 
         {/* Date */}
@@ -109,7 +109,7 @@ export default function HeroInvitation({ visible }: HeroInvitationProps) {
             }}
           />
           <p className="font-serif italic text-base" style={{ color: 'rgba(220,205,175,0.9)' }}>
-            Friday, 15 August 2025
+            Friday, 22 May 2026
           </p>
           <p className="text-xs tracking-[0.25em]" style={{ color: 'rgba(255,255,255,0.5)', fontFamily: 'Lato' }}>
             CAIRO, EGYPT

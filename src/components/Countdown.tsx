@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { motion, useInView } from 'framer-motion'
 
-const WEDDING_DATE = new Date('2025-08-15T18:00:00')
+const WEDDING_DATE = new Date('2026-05-22T17:00:00')
 
 function getTimeLeft() {
   const now = new Date()
@@ -60,10 +60,10 @@ export default function Countdown() {
       >
         {/* Section header */}
         <p
-          className="font-arabic text-2xl mb-1"
-          style={{ color: '#C9A84C', direction: 'rtl' }}
+          className="text-xs tracking-[0.25em] uppercase mb-2"
+          style={{ color: '#C9A84C', fontFamily: 'Lato' }}
         >
-          العد التنازلي
+          the wait is almost over
         </p>
         <h2 className="font-serif font-light text-3xl mb-2" style={{ color: '#2D463E' }}>
           Counting Down
@@ -98,7 +98,7 @@ export default function Countdown() {
         >
           <span className="text-sm" style={{ color: '#C9A84C' }}>✦</span>
           <span className="font-serif italic text-sm" style={{ color: '#2D463E' }}>
-            Friday, 15 August 2025 · 6:00 PM
+            Friday, 22 May 2026 · 5:00 PM
           </span>
           <span className="text-sm" style={{ color: '#C9A84C' }}>✦</span>
         </motion.div>

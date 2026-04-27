@@ -52,10 +52,9 @@ export default function RSVP() {
         transition={{ duration: 0.9, ease: 'easeOut' }}
         className="max-w-sm mx-auto relative z-10"
       >
-        {/* Section header */}
         <div className="text-center mb-10">
-          <p className="font-arabic text-2xl mb-1" style={{ color: '#C9A84C', direction: 'rtl' }}>
-            التأكيد
+          <p className="text-xs tracking-[0.25em] uppercase mb-2" style={{ color: '#C9A84C', fontFamily: 'Lato' }}>
+            Please Respond
           </p>
           <h2 className="font-serif font-light text-4xl mb-2" style={{ color: '#FDFBF7' }}>
             RSVP
@@ -65,7 +64,7 @@ export default function RSVP() {
             style={{ maxWidth: '220px', margin: '0 auto' }}
           >
             <span className="text-xs tracking-[0.25em] uppercase" style={{ color: 'rgba(253,251,247,0.5)', fontFamily: 'Lato' }}>
-              kindly reply by August 1st
+              kindly reply by May 1st
             </span>
           </div>
         </div>
@@ -210,10 +209,10 @@ export default function RSVP() {
                   {attendance === 'yes' ? 'We\'ll see you there!' : 'We\'ll miss you!'}
                 </h3>
                 <p
-                  className="font-arabic text-lg mb-3"
-                  style={{ color: '#C9A84C', direction: 'rtl' }}
+                  className="font-serif italic text-lg mb-3"
+                  style={{ color: '#C9A84C' }}
                 >
-                  {attendance === 'yes' ? 'بارك الله فيكم' : 'شكراً لكم'}
+                  {attendance === 'yes' ? 'We are so excited to celebrate with you' : 'Thank you so much'}
                 </p>
                 <p className="text-sm" style={{ color: 'rgba(253,251,247,0.55)', fontFamily: 'Lato' }}>
                   Thank you, {name.split(' ')[0]}. Your RSVP has been received.

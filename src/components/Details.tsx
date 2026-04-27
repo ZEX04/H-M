@@ -3,23 +3,20 @@ import { motion, useInView } from 'framer-motion'
 
 const timelineItems = [
   {
-    time: '5:30 PM',
+    time: '5:00 PM',
     title: 'Ceremony',
-    titleAr: 'العقد',
     desc: 'The Katb el Kitab ceremony with the Sheikh and close family.',
     icon: '☽',
   },
   {
     time: '7:00 PM',
     title: 'Photos',
-    titleAr: 'الصور',
     desc: 'Garden photography session with the couple and family.',
     icon: '✦',
   },
   {
     time: '8:00 PM',
     title: 'Dinner',
-    titleAr: 'العشاء',
     desc: 'An elegant dinner reception celebrating the blessed union.',
     icon: '❋',
   },
@@ -27,12 +24,16 @@ const timelineItems = [
 
 function MapPlaceholder() {
   return (
-    <div
-      className="map-container rounded-2xl"
+    <a
+      href="https://maps.app.goo.gl/c94bVeb85ryUNGAMA?g_st=ac"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="map-container rounded-2xl block relative overflow-hidden transition-transform hover:scale-[1.02]"
       style={{
         height: '220px',
         border: '1px solid rgba(201,168,76,0.25)',
         boxShadow: '0 4px 24px rgba(45,70,62,0.08)',
+        cursor: 'pointer',
       }}
     >
       {/* Map pin */}
@@ -68,10 +69,10 @@ function MapPlaceholder() {
           }}
         >
           <p className="font-serif text-base font-semibold" style={{ color: '#2D463E' }}>
-            Four Seasons Hotel Cairo
+            Open in Google Maps
           </p>
           <p className="text-xs mt-0.5" style={{ color: '#6B7B73', fontFamily: 'Lato' }}>
-            Nile Corniche, Garden City, Cairo
+            Tap for directions to the venue
           </p>
         </div>
       </div>
@@ -86,7 +87,7 @@ function MapPlaceholder() {
         <circle cx="80" cy="170" r="8" fill="rgba(45,70,62,0.06)" />
         <circle cx="260" cy="50" r="6" fill="rgba(45,70,62,0.06)" />
       </svg>
-    </div>
+    </a>
   )
 }
 
@@ -105,8 +106,8 @@ export default function Details() {
       >
         {/* ── Location ── */}
         <div className="text-center mb-8">
-          <p className="font-arabic text-2xl mb-1" style={{ color: '#C9A84C', direction: 'rtl' }}>
-            المكان
+          <p className="text-xs tracking-[0.25em] uppercase mb-2" style={{ color: '#C9A84C', fontFamily: 'Lato' }}>
+            The Venue
           </p>
           <h2 className="font-serif font-light text-3xl mb-2" style={{ color: '#2D463E' }}>
             Location
@@ -124,8 +125,8 @@ export default function Details() {
 
         {/* ── Timeline ── */}
         <div className="text-center mb-8">
-          <p className="font-arabic text-2xl mb-1" style={{ color: '#C9A84C', direction: 'rtl' }}>
-            البرنامج
+          <p className="text-xs tracking-[0.25em] uppercase mb-2" style={{ color: '#C9A84C', fontFamily: 'Lato' }}>
+            Itinerary
           </p>
           <h2 className="font-serif font-light text-3xl mb-2" style={{ color: '#2D463E' }}>
             Timeline
@@ -181,9 +182,6 @@ export default function Details() {
                     <h3 className="font-serif text-xl font-semibold" style={{ color: '#2D463E' }}>
                       {item.title}
                     </h3>
-                    <span className="font-arabic text-sm" style={{ color: '#C9A84C' }}>
-                      {item.titleAr}
-                    </span>
                     <span
                       className="ml-auto text-xs tracking-wider"
                       style={{ color: '#6B7B73', fontFamily: 'Lato' }}
