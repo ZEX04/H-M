@@ -36,7 +36,7 @@ export default function HeroInvitation({ visible }: HeroInvitationProps) {
       />
 
       {/* ── Content ── */}
-      <div className="relative z-10 flex flex-col items-center text-center px-8 w-full max-w-sm">
+      <div className="relative z-10 flex flex-col items-center text-center px-8 w-full max-w-5xl">
 
         {/* Bismillah */}
         <motion.p
@@ -44,7 +44,7 @@ export default function HeroInvitation({ visible }: HeroInvitationProps) {
           initial={{ opacity: 0, y: -20 }}
           animate={visible ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.4, duration: 0.9 }}
-          className="font-serif italic text-2xl mb-6"
+          className="font-serif italic text-3xl md:text-4xl mb-6"
           style={{ color: 'rgba(220,205,185,0.85)', letterSpacing: '0.05em' }}
         >
           With joyful hearts
@@ -55,8 +55,8 @@ export default function HeroInvitation({ visible }: HeroInvitationProps) {
           initial={{ opacity: 0 }}
           animate={visible ? { opacity: 1 } : {}}
           transition={{ delay: 0.6, duration: 0.8 }}
-          className="text-xs tracking-[0.3em] uppercase mb-8"
-          style={{ color: 'rgba(255,255,255,0.55)', fontFamily: 'Lato' }}
+          className="text-sm md:text-base tracking-[0.35em] uppercase mb-10"
+          style={{ color: 'rgba(255,255,255,0.65)', fontFamily: 'Lato' }}
         >
           we are getting married
         </motion.p>
@@ -67,7 +67,7 @@ export default function HeroInvitation({ visible }: HeroInvitationProps) {
           animate={visible ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.8, duration: 1.0 }}
           className="font-serif italic font-light leading-none"
-          style={{ fontSize: 'clamp(3.5rem, 14vw, 5rem)', color: '#FFFFFF', lineHeight: 1.05, textShadow: '0 2px 30px rgba(0,0,0,0.4)' }}
+          style={{ fontSize: 'clamp(5rem, 18vw, 9rem)', color: '#FFFFFF', lineHeight: 1.05, textShadow: '0 4px 40px rgba(0,0,0,0.6)' }}
         >
           Mohamed
         </motion.h1>
@@ -78,7 +78,7 @@ export default function HeroInvitation({ visible }: HeroInvitationProps) {
           animate={visible ? { opacity: 1, scale: 1 } : {}}
           transition={{ delay: 1.0, duration: 0.7 }}
           className="font-serif italic"
-          style={{ fontSize: 'clamp(2rem, 8vw, 3rem)', color: 'rgba(220,205,175,0.85)', lineHeight: 1.3 }}
+          style={{ fontSize: 'clamp(2.5rem, 10vw, 4.5rem)', color: 'rgba(220,205,175,0.9)', lineHeight: 1.3 }}
         >
           &amp;
         </motion.p>
@@ -89,7 +89,7 @@ export default function HeroInvitation({ visible }: HeroInvitationProps) {
           animate={visible ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 1.1, duration: 1.0 }}
           className="font-serif italic font-light leading-none"
-          style={{ fontSize: 'clamp(3.5rem, 14vw, 5rem)', color: '#FFFFFF', lineHeight: 1.05, textShadow: '0 2px 30px rgba(0,0,0,0.4)' }}
+          style={{ fontSize: 'clamp(5rem, 18vw, 9rem)', color: '#FFFFFF', lineHeight: 1.05, textShadow: '0 4px 40px rgba(0,0,0,0.6)' }}
         >
           Hind
         </motion.h1>
@@ -108,10 +108,10 @@ export default function HeroInvitation({ visible }: HeroInvitationProps) {
               marginBottom: '8px',
             }}
           />
-          <p className="font-serif italic text-base" style={{ color: 'rgba(220,205,175,0.9)' }}>
+          <p className="font-serif italic text-xl md:text-2xl" style={{ color: 'rgba(220,205,175,0.95)' }}>
             Friday, 22 May 2026
           </p>
-          <p className="text-xs tracking-[0.25em]" style={{ color: 'rgba(255,255,255,0.5)', fontFamily: 'Lato' }}>
+          <p className="text-sm md:text-base tracking-[0.25em]" style={{ color: 'rgba(255,255,255,0.6)', fontFamily: 'Lato' }}>
             CAIRO, EGYPT
           </p>
         </motion.div>
@@ -125,7 +125,7 @@ export default function HeroInvitation({ visible }: HeroInvitationProps) {
         >
           <a
             href="#countdown"
-            className="inline-flex items-center gap-3 px-7 py-3.5 rounded-full text-xs tracking-[0.25em] uppercase transition-all duration-300"
+            className="inline-flex items-center gap-3 px-8 py-4 rounded-full text-sm md:text-base tracking-[0.25em] uppercase transition-all duration-300"
             style={{
               background: 'rgba(255,255,255,0.12)',
               border: '1px solid rgba(255,255,255,0.3)',
