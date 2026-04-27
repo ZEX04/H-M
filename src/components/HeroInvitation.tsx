@@ -31,7 +31,7 @@ export default function HeroInvitation({ visible }: HeroInvitationProps) {
       <div
         className="absolute inset-0 z-0"
         style={{
-          background: 'linear-gradient(180deg, rgba(10,20,15,0.55) 0%, rgba(10,20,15,0.3) 40%, rgba(10,20,15,0.65) 100%)',
+          background: 'linear-gradient(180deg, rgba(15,25,20,0.8) 0%, rgba(15,25,20,0.6) 45%, rgba(15,25,20,0.85) 100%)',
         }}
       />
 
