@@ -36,7 +36,7 @@ export default function Navbar() {
       >
         {/* Logo */}
         <a href="#home" className="font-serif text-xl font-light" style={{ color: '#2D463E', letterSpacing: '0.05em' }}>
-          L <span className="gold-shimmer">✦</span> O
+          M <span className="gold-shimmer">✦</span> H
         </a>
 
         {/* Desktop nav */}
