@@ -42,7 +42,7 @@ export default function Footer() {
       </div>
 
       <p className="text-xs" style={{ color: 'rgba(253,251,247,0.25)', fontFamily: 'Lato' }}>
-        Friday, 22 May 2026 · Cairo, Egypt
+        Friday, 22 May 2026 · 10th of Ramadan City
       </p>
     </footer>
   )

@@ -221,7 +221,7 @@ export default function EnvelopeHero() {
                       Friday · 22 May 2026
                     </p>
                     <p className="font-serif italic text-sm mt-1" style={{ color: '#C9A84C' }}>
-                      Cairo, Egypt
+                      10th of Ramadan City
                     </p>
                   </div>
 

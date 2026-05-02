@@ -174,7 +174,7 @@ export default function RSVP() {
 
                 {/* Optional Message Field */}
                 <AnimatePresence>
-                  {attendance === 'yes' && (
+                  {attendance !== '' && (
                     <motion.div
                       initial={{ opacity: 0, height: 0, marginTop: 0 }}
                       animate={{ opacity: 1, height: 'auto', marginTop: 12 }}

@@ -112,7 +112,7 @@ export default function HeroInvitation({ visible }: HeroInvitationProps) {
             Friday, 22 May 2026
           </p>
           <p className="text-sm md:text-base tracking-[0.25em]" style={{ color: 'rgba(255,255,255,0.6)', fontFamily: 'Lato' }}>
-            CAIRO, EGYPT
+            10TH OF RAMADAN CITY
           </p>
         </motion.div>
 
