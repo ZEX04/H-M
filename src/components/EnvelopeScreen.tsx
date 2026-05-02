@@ -193,8 +193,18 @@ export default function EnvelopeScreen({ onDone }: EnvelopeScreenProps) {
         </div>
 
         {/* Decorative Golden Foil Flowers (Desktop) */}
+        {/* Decorative Golden Foil Flowers (Desktop & Mobile) */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[100vw] h-[100dvh] z-[4] pointer-events-none overflow-hidden opacity-90">
           <div className="golden-flower desktop-flower" style={{ width: '100%', height: '100%', top: 0, left: 0 }} />
+          
+          <div className="mobile-flower-container absolute top-0 left-0 w-full h-full">
+            <div className="mobile-flower-edge" style={{ 
+              maskPosition: 'left center', 
+              WebkitMaskPosition: 'left center',
+              transform: 'scale(1.6) translate(-20%, 8%)',
+              transformOrigin: 'left center'
+            }} />
+          </div>
         </div>
 
         {/* z-index: 5 -> The Top Flap (closes over everything). */}
@@ -236,18 +246,6 @@ export default function EnvelopeScreen({ onDone }: EnvelopeScreenProps) {
               <WaxSeal />
             </div>
           </motion.div>
-        </div>
-
-        {/* Flawless mobile flowers - z-[6] to go OVER the top flap, and lowered using translate Y! */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[100vw] h-[100dvh] z-[6] pointer-events-none overflow-hidden opacity-90">
-          <div className="mobile-flower-container absolute top-0 left-0 w-full h-full">
-            <div className="mobile-flower-edge" style={{ 
-              maskPosition: 'left center', 
-              WebkitMaskPosition: 'left center',
-              transform: 'scale(1.6) translate(-20%, 8%)',
-              transformOrigin: 'left center'
-            }} />
-          </div>
         </div>
 
         {/* ── Raised Gold Foil Typography (under seal) ── */}
