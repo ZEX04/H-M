@@ -153,10 +153,10 @@ export default function EnvelopeScreen({ onDone }: EnvelopeScreenProps) {
              top: 0; left: 0; width: 100%; height: 100%;
              background: linear-gradient(135deg, #C9A84C, #F5E6BE, #C9A84C, #8C6D23);
              mask-image: url('/assets/kollsd-flowers-5718624.png');
-             mask-size: auto 75dvh; /* Scale proportionally to screen height */
+             mask-size: auto 100dvh; /* Size it up to massive limits! */
              mask-repeat: no-repeat;
              -webkit-mask-image: url('/assets/kollsd-flowers-5718624.png');
-             -webkit-mask-size: auto 75dvh;
+             -webkit-mask-size: auto 100dvh;
              -webkit-mask-repeat: no-repeat;
              pointer-events: none;
              filter: drop-shadow(0 4px 6px rgba(0,0,0,0.4));
@@ -215,10 +215,20 @@ export default function EnvelopeScreen({ onDone }: EnvelopeScreenProps) {
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[100vw] h-[100dvh] z-[4] pointer-events-none overflow-hidden opacity-90">
           <div className="golden-flower desktop-flower" style={{ width: '100%', height: '100%', top: 0, left: 0 }} />
           
-          {/* Flawless mobile flowers - Native proportions, left and right edges mapped perfectly! */}
-          <div className="mobile-flower-container absolute inset-0">
-            <div className="mobile-flower-edge" style={{ maskPosition: 'left center', WebkitMaskPosition: 'left center' }} />
-            <div className="mobile-flower-edge" style={{ maskPosition: 'right center', WebkitMaskPosition: 'right center' }} />
+          {/* Flawless mobile flowers - Sized up and pushed out so only edges are visible! */}
+          <div className="mobile-flower-container absolute top-0 left-0 w-full h-full">
+            <div className="mobile-flower-edge" style={{ 
+              maskPosition: 'left center', 
+              WebkitMaskPosition: 'left center',
+              transform: 'scale(1.4) translateX(-35%)',
+              transformOrigin: 'left center'
+            }} />
+            <div className="mobile-flower-edge" style={{ 
+              maskPosition: 'right center', 
+              WebkitMaskPosition: 'right center',
+              transform: 'scale(1.4) translateX(35%)',
+              transformOrigin: 'right center'
+            }} />
           </div>
         </div>
 
@@ -264,7 +274,7 @@ export default function EnvelopeScreen({ onDone }: EnvelopeScreenProps) {
         </div>
 
         {/* ── Raised Gold Foil Typography (under seal) ── */}
-        <div className="absolute bottom-[20%] left-0 w-full z-[8] pointer-events-none flex justify-center">
+        <div className="absolute bottom-[16%] left-0 w-full z-[8] pointer-events-none flex justify-center">
           <motion.div
             className="envelope-text"
             animate={isOpening ? { opacity: 0, y: 15 } : { opacity: 1, y: 0 }}
