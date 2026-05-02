@@ -120,6 +120,16 @@ export default function EnvelopeScreen({ onDone }: EnvelopeScreenProps) {
             text-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
           }
 
+          :root {
+            --env-center-y: 47%;
+          }
+
+          @media (max-aspect-ratio: 4/5) {
+            :root {
+              --env-center-y: 55vw;
+            }
+          }
+
           .golden-flower {
             position: absolute;
             background: linear-gradient(135deg, #C9A84C, #F5E6BE, #C9A84C, #8C6D23);
@@ -134,6 +144,13 @@ export default function EnvelopeScreen({ onDone }: EnvelopeScreenProps) {
             pointer-events: none;
             filter: drop-shadow(0 4px 6px rgba(0,0,0,0.4));
           }
+
+          @media (max-aspect-ratio: 4/5) {
+            .golden-flower {
+              mask-size: 150vw auto;
+              -webkit-mask-size: 150vw auto;
+            }
+          }
         `}
       </style>
 
@@ -147,17 +164,17 @@ export default function EnvelopeScreen({ onDone }: EnvelopeScreenProps) {
         <div className="absolute inset-0 z-[3] pointer-events-none">
           {/* Left Flap Wrapper */}
           <div className="absolute inset-0" style={{ filter: 'drop-shadow(8px 0 20px rgba(0,0,0,0.45))' }}>
-            <div className="flap absolute top-0 left-0 w-full h-full bg-[#1b3324]" style={{ clipPath: 'polygon(0 0, 50% 47%, 0 100%)' }} />
+            <div className="flap absolute top-0 left-0 w-full h-full bg-[#1b3324]" style={{ clipPath: 'polygon(0 0, 50% var(--env-center-y), 0 100%)' }} />
           </div>
           {/* Right Flap Wrapper */}
           <div className="absolute inset-0" style={{ filter: 'drop-shadow(-8px 0 20px rgba(0,0,0,0.45))' }}>
-            <div className="flap absolute top-0 right-0 w-full h-full bg-[#1b3324]" style={{ clipPath: 'polygon(100% 0, 50% 47%, 100% 100%)' }} />
+            <div className="flap absolute top-0 right-0 w-full h-full bg-[#1b3324]" style={{ clipPath: 'polygon(100% 0, 50% var(--env-center-y), 100% 100%)' }} />
           </div>
         </div>
 
         {/* z-index: 4 -> The Bottom Flap (so the card stays hidden in the "pocket"). */}
         <div className="absolute inset-0 z-[4] pointer-events-none" style={{ filter: 'drop-shadow(0 -8px 24px rgba(0,0,0,0.5))' }}>
-          <div className="flap absolute inset-0 bg-[#1b3324]" style={{ clipPath: 'polygon(0 100%, 50% 47%, 100% 100%)' }} />
+          <div className="flap absolute inset-0 bg-[#1b3324]" style={{ clipPath: 'polygon(0 100%, 50% var(--env-center-y), 100% 100%)' }} />
         </div>
 
         {/* Decorative Golden Foil Flowers */}
@@ -168,8 +185,9 @@ export default function EnvelopeScreen({ onDone }: EnvelopeScreenProps) {
         {/* z-index: 5 -> The Top Flap (closes over everything). */}
         <div className="absolute top-0 left-0 w-full h-full z-[5] pointer-events-none" style={{ perspective: '1400px' }}>
           <motion.div
-            className="absolute top-0 left-0 w-full h-[47%] origin-top"
+            className="absolute top-0 left-0 w-full origin-top"
             style={{
+              height: 'var(--env-center-y)',
               transformStyle: 'preserve-3d',
             }}
             animate={isOpening ? {
