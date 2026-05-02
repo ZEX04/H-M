@@ -53,10 +53,8 @@ export default function EnvelopeScreen({ onDone }: EnvelopeScreenProps) {
             height: 100dvh;
           }
 
-          /* Ensure text never overlaps by positioning it safely at the bottom */
           @media (max-aspect-ratio: 4/5) {
             .luxury-envelope {
-              /* Ensure it fills the mobile screen */
               width: 100vw;
               height: 100dvh;
             }
@@ -98,6 +96,18 @@ export default function EnvelopeScreen({ onDone }: EnvelopeScreenProps) {
             filter: drop-shadow(0 8px 16px rgba(0,0,0,0.4)) drop-shadow(0 2px 4px rgba(0,0,0,0.25));
           }
 
+          .left-flap-path { clip-path: polygon(0 0, 50% 47%, 0 100%); }
+          .right-flap-path { clip-path: polygon(100% 0, 50% 47%, 100% 100%); }
+          .bottom-flap-path { clip-path: polygon(0 100%, 50% 47%, 100% 100%); }
+          .top-flap-h { height: 47%; }
+
+          @media (max-aspect-ratio: 4/5) {
+            .left-flap-path { clip-path: polygon(0 0, 50% 34%, 0 100%); }
+            .right-flap-path { clip-path: polygon(100% 0, 50% 34%, 100% 100%); }
+            .bottom-flap-path { clip-path: polygon(0 100%, 50% 34%, 100% 100%); }
+            .top-flap-h { height: 34%; }
+          }
+
           .envelope-text {
             position: absolute;
             bottom: 10%;
@@ -112,24 +122,32 @@ export default function EnvelopeScreen({ onDone }: EnvelopeScreenProps) {
 
           .envelope-text p {
             font-family: 'Great Vibes', cursive;
-            font-size: clamp(22px, 6vw, 48px);
+            font-size: clamp(32px, 8vw, 48px);
             margin-bottom: 6px;
             color: #F5E6BE;
             text-shadow: 0 4px 12px rgba(0, 0, 0, 0.8), 0 2px 4px rgba(0,0,0,0.6);
-            letter-spacing: 1px;
-            line-height: 1;
-            white-space: nowrap;
+            letter-spacing: 2px;
+            line-height: 1.2;
+            white-space: normal;
           }
 
           .envelope-text span {
             font-family: 'Cinzel', serif;
-            font-size: clamp(8px, 2.2vw, 16px);
-            letter-spacing: 4px;
+            font-size: clamp(12px, 3.5vw, 16px);
+            letter-spacing: 6px;
             text-transform: uppercase;
             font-weight: 600;
             color: #C9A84C;
             opacity: 0.95;
             text-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
+            white-space: normal;
+          }
+
+          @media (max-aspect-ratio: 4/5) {
+            .envelope-text {
+               bottom: 22%; /* Raise higher to clear bottom flowers */
+               padding: 0 5%;
+            }
           }
 
           .golden-flower {
@@ -156,20 +174,20 @@ export default function EnvelopeScreen({ onDone }: EnvelopeScreenProps) {
         <div className="absolute inset-0 z-[1] bg-[#1b3324]" />
 
         {/* z-index: 3 -> The Left and Right Flaps. */}
-        <div className="absolute inset-0 z-[3] pointer-events-none">
+        <div className="absolute inset-0 z-[3] pointer-events-none mobile-flaps">
           {/* Left Flap Wrapper */}
           <div className="absolute inset-0" style={{ filter: 'drop-shadow(8px 0 20px rgba(0,0,0,0.45))' }}>
-            <div className="flap absolute top-0 left-0 w-full h-full bg-[#1b3324]" style={{ clipPath: 'polygon(0 0, 50% 43%, 0 100%)' }} />
+            <div className="flap absolute top-0 left-0 w-full h-full bg-[#1b3324] left-flap-path" />
           </div>
           {/* Right Flap Wrapper */}
           <div className="absolute inset-0" style={{ filter: 'drop-shadow(-8px 0 20px rgba(0,0,0,0.45))' }}>
-            <div className="flap absolute top-0 right-0 w-full h-full bg-[#1b3324]" style={{ clipPath: 'polygon(100% 0, 50% 43%, 100% 100%)' }} />
+            <div className="flap absolute top-0 right-0 w-full h-full bg-[#1b3324] right-flap-path" />
           </div>
         </div>
 
         {/* z-index: 4 -> The Bottom Flap (so the card stays hidden in the "pocket"). */}
         <div className="absolute inset-0 z-[4] pointer-events-none" style={{ filter: 'drop-shadow(0 -8px 24px rgba(0,0,0,0.5))' }}>
-          <div className="flap absolute inset-0 bg-[#1b3324]" style={{ clipPath: 'polygon(0 100%, 50% 43%, 100% 100%)' }} />
+          <div className="flap absolute inset-0 bg-[#1b3324] bottom-flap-path" />
         </div>
 
         {/* Decorative Golden Foil Flowers */}
@@ -180,7 +198,7 @@ export default function EnvelopeScreen({ onDone }: EnvelopeScreenProps) {
         {/* z-index: 5 -> The Top Flap (closes over everything). */}
         <div className="absolute top-0 left-0 w-full h-full z-[5] pointer-events-none" style={{ perspective: '1400px' }}>
           <motion.div
-            className="absolute top-0 left-0 w-full h-[43%] origin-top"
+            className="absolute top-0 left-0 w-full origin-top top-flap-h"
             style={{
               transformStyle: 'preserve-3d',
             }}
