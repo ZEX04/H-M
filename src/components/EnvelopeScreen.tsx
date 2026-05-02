@@ -102,9 +102,9 @@ export default function EnvelopeScreen({ onDone }: EnvelopeScreenProps) {
           .top-flap-h { height: 47%; }
 
           @media (max-aspect-ratio: 4/5) {
-            .left-flap-path { clip-path: polygon(0 0, 50% 34%, 0 100%); }
-            .right-flap-path { clip-path: polygon(100% 0, 50% 34%, 100% 100%); }
-            .bottom-flap-path { clip-path: polygon(0 100%, 50% 34%, 100% 100%); }
+            .left-flap-path { clip-path: polygon(0 0, 50% 34%, 50% 66%, 0 100%); }
+            .right-flap-path { clip-path: polygon(100% 0, 50% 34%, 50% 66%, 100% 100%); }
+            .bottom-flap-path { clip-path: polygon(0 100%, 50% 66%, 100% 100%); }
             .top-flap-h { height: 34%; }
           }
 
