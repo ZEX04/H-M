@@ -53,10 +53,14 @@ export default function EnvelopeScreen({ onDone }: EnvelopeScreenProps) {
             height: 100dvh;
           }
 
+          /* "exceed out side the size" */
           @media (max-aspect-ratio: 4/5) {
             .luxury-envelope {
-              width: 100vw;
-              height: 100dvh;
+              width: 150dvh !important; /* Forces PC-like flap angles */
+              height: 100dvh !important;
+              position: absolute;
+              left: 50%;
+              transform: translateX(-50%);
             }
           }
 
@@ -96,34 +100,23 @@ export default function EnvelopeScreen({ onDone }: EnvelopeScreenProps) {
             filter: drop-shadow(0 8px 16px rgba(0,0,0,0.4)) drop-shadow(0 2px 4px rgba(0,0,0,0.25));
           }
 
-          .left-flap-path { clip-path: polygon(0 0, 50% 47%, 0 100%); }
-          .right-flap-path { clip-path: polygon(100% 0, 50% 47%, 100% 100%); }
-          .bottom-flap-path { clip-path: polygon(0 100%, 50% 47%, 100% 100%); }
-          .top-flap-h { height: 47%; }
-
-          @media (max-aspect-ratio: 4/5) {
-            .left-flap-path { clip-path: polygon(0 0, 50% 34%, 50% 66%, 0 100%); }
-            .right-flap-path { clip-path: polygon(100% 0, 50% 34%, 50% 66%, 100% 100%); }
-            .bottom-flap-path { clip-path: polygon(0 100%, 50% 66%, 100% 100%); }
-            .top-flap-h { height: 34%; }
-          }
-
           .envelope-text {
             position: absolute;
-            bottom: 10%;
-            left: 0;
-            right: 0;
+            bottom: 12%; /* Perfect positioning */
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100vw; /* Stay within phone screen! */
             text-align: center;
             color: #f4ebd9;
             z-index: 8;
             pointer-events: none;
-            width: 100%;
+            padding: 0 20px;
           }
 
           .envelope-text p {
             font-family: 'Great Vibes', cursive;
-            font-size: clamp(32px, 8vw, 48px);
-            margin-bottom: 6px;
+            font-size: clamp(32px, 9vw, 56px); /* Bigger! */
+            margin-bottom: 8px;
             color: #F5E6BE;
             text-shadow: 0 4px 12px rgba(0, 0, 0, 0.8), 0 2px 4px rgba(0,0,0,0.6);
             letter-spacing: 2px;
@@ -133,7 +126,7 @@ export default function EnvelopeScreen({ onDone }: EnvelopeScreenProps) {
 
           .envelope-text span {
             font-family: 'Cinzel', serif;
-            font-size: clamp(12px, 3.5vw, 16px);
+            font-size: clamp(12px, 3.5vw, 18px); /* Bigger! */
             letter-spacing: 6px;
             text-transform: uppercase;
             font-weight: 600;
@@ -145,8 +138,7 @@ export default function EnvelopeScreen({ onDone }: EnvelopeScreenProps) {
 
           @media (max-aspect-ratio: 4/5) {
             .envelope-text {
-               bottom: 22%; /* Raise higher to clear bottom flowers */
-               padding: 0 5%;
+               bottom: 25%; /* Raise higher to clearly miss flowers */
             }
           }
 
@@ -164,6 +156,44 @@ export default function EnvelopeScreen({ onDone }: EnvelopeScreenProps) {
             pointer-events: none;
             filter: drop-shadow(0 4px 6px rgba(0,0,0,0.4));
           }
+
+          .mobile-flower { display: none; }
+
+          @media (max-aspect-ratio: 4/5) {
+             .desktop-flower { display: none; }
+             .mobile-flower {
+                display: block;
+                position: absolute;
+                background: linear-gradient(135deg, #C9A84C, #F5E6BE, #C9A84C, #8C6D23);
+                mask-image: url('/assets/kollsd-flowers-5718624.png');
+                mask-size: contain;
+                mask-repeat: no-repeat;
+                -webkit-mask-image: url('/assets/kollsd-flowers-5718624.png');
+                -webkit-mask-size: contain;
+                -webkit-mask-repeat: no-repeat;
+                pointer-events: none;
+                filter: drop-shadow(0 4px 6px rgba(0,0,0,0.4));
+             }
+          }
+
+          .mobile-flower { display: none; }
+
+          @media (max-aspect-ratio: 4/5) {
+             .desktop-flower { display: none; }
+             .mobile-flower {
+                display: block;
+                position: absolute;
+                background: linear-gradient(135deg, #C9A84C, #F5E6BE, #C9A84C, #8C6D23);
+                mask-image: url('/assets/kollsd-flowers-5718624.png');
+                mask-size: contain;
+                mask-repeat: no-repeat;
+                -webkit-mask-image: url('/assets/kollsd-flowers-5718624.png');
+                -webkit-mask-size: contain;
+                -webkit-mask-repeat: no-repeat;
+                pointer-events: none;
+                filter: drop-shadow(0 4px 6px rgba(0,0,0,0.4));
+             }
+          }
         `}
       </style>
 
@@ -174,31 +204,35 @@ export default function EnvelopeScreen({ onDone }: EnvelopeScreenProps) {
         <div className="absolute inset-0 z-[1] bg-[#1b3324]" />
 
         {/* z-index: 3 -> The Left and Right Flaps. */}
-        <div className="absolute inset-0 z-[3] pointer-events-none mobile-flaps">
+        <div className="absolute inset-0 z-[3] pointer-events-none">
           {/* Left Flap Wrapper */}
           <div className="absolute inset-0" style={{ filter: 'drop-shadow(8px 0 20px rgba(0,0,0,0.45))' }}>
-            <div className="flap absolute top-0 left-0 w-full h-full bg-[#1b3324] left-flap-path" />
+            <div className="flap absolute top-0 left-0 w-full h-full bg-[#1b3324]" style={{ clipPath: 'polygon(0 0, 50% 47%, 0 100%)' }} />
           </div>
           {/* Right Flap Wrapper */}
           <div className="absolute inset-0" style={{ filter: 'drop-shadow(-8px 0 20px rgba(0,0,0,0.45))' }}>
-            <div className="flap absolute top-0 right-0 w-full h-full bg-[#1b3324] right-flap-path" />
+            <div className="flap absolute top-0 right-0 w-full h-full bg-[#1b3324]" style={{ clipPath: 'polygon(100% 0, 50% 47%, 100% 100%)' }} />
           </div>
         </div>
 
         {/* z-index: 4 -> The Bottom Flap (so the card stays hidden in the "pocket"). */}
         <div className="absolute inset-0 z-[4] pointer-events-none" style={{ filter: 'drop-shadow(0 -8px 24px rgba(0,0,0,0.5))' }}>
-          <div className="flap absolute inset-0 bg-[#1b3324] bottom-flap-path" />
+          <div className="flap absolute inset-0 bg-[#1b3324]" style={{ clipPath: 'polygon(0 100%, 50% 47%, 100% 100%)' }} />
         </div>
 
         {/* Decorative Golden Foil Flowers */}
-        <div className="absolute inset-0 z-[4] pointer-events-none overflow-hidden opacity-90">
-          <div className="golden-flower" style={{ width: '100%', height: '100%', top: 0, left: 0 }} />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[100vw] h-[100dvh] z-[4] pointer-events-none overflow-hidden opacity-90">
+          <div className="golden-flower desktop-flower" style={{ width: '100%', height: '100%', top: 0, left: 0 }} />
+          
+          {/* Beautiful mobile corners that won't stretch! */}
+          <div className="mobile-flower" style={{ width: 'clamp(200px, 60vw, 400px)', height: 'clamp(200px, 60vw, 400px)', top: '-5%', right: '-5%', maskPosition: 'top right', WebkitMaskPosition: 'top right' }} />
+          <div className="mobile-flower" style={{ width: 'clamp(200px, 60vw, 400px)', height: 'clamp(200px, 60vw, 400px)', bottom: '-5%', left: '-5%', maskPosition: 'bottom left', WebkitMaskPosition: 'bottom left', transform: 'scaleX(-1) scaleY(-1)' }} />
         </div>
 
         {/* z-index: 5 -> The Top Flap (closes over everything). */}
         <div className="absolute top-0 left-0 w-full h-full z-[5] pointer-events-none" style={{ perspective: '1400px' }}>
           <motion.div
-            className="absolute top-0 left-0 w-full origin-top top-flap-h"
+            className="absolute top-0 left-0 w-full h-[47%] origin-top"
             style={{
               transformStyle: 'preserve-3d',
             }}
@@ -231,8 +265,8 @@ export default function EnvelopeScreen({ onDone }: EnvelopeScreenProps) {
 
             {/* z-index: 6 -> The Wax Seal embedded in the flap. */}
             <div
-              className="absolute left-1/2 bottom-0 pointer-events-none"
-              style={{ transform: 'translateZ(2px)' }}
+              className="absolute bottom-0 pointer-events-none"
+              style={{ transform: 'translateZ(2px)', left: '50%', marginLeft: '-37.5vw' }} /* Keep wax seal exactly in the center of the viewport */
             >
               <WaxSeal />
             </div>
