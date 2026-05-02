@@ -53,6 +53,17 @@ export default function EnvelopeScreen({ onDone }: EnvelopeScreenProps) {
             height: 100dvh;
           }
 
+          @media (max-aspect-ratio: 4/5) {
+            .luxury-envelope {
+              width: 90vw;
+              height: 130vw; /* Beautiful portrait card proportion */
+              max-height: 85dvh;
+              border-radius: 4px; /* Soften edges slightly for realism */
+              box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+              margin: auto;
+            }
+          }
+
           .luxury-envelope::before, .flap::before {
             content: "";
             position: absolute;
@@ -102,7 +113,7 @@ export default function EnvelopeScreen({ onDone }: EnvelopeScreenProps) {
 
           .envelope-text p {
             font-family: 'Great Vibes', cursive;
-            font-size: clamp(32px, 8vw, 64px);
+            font-size: 48px;
             margin-bottom: 4px;
             color: #F5E6BE;
             text-shadow: 0 4px 12px rgba(0, 0, 0, 0.8), 0 2px 4px rgba(0,0,0,0.6);
@@ -111,7 +122,7 @@ export default function EnvelopeScreen({ onDone }: EnvelopeScreenProps) {
 
           .envelope-text span {
             font-family: 'Cinzel', serif;
-            font-size: clamp(12px, 3vw, 20px);
+            font-size: 16px;
             letter-spacing: 8px;
             text-transform: uppercase;
             font-weight: 600;
@@ -120,23 +131,19 @@ export default function EnvelopeScreen({ onDone }: EnvelopeScreenProps) {
             text-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
           }
 
-          :root {
-            --env-top-h: 47%;
-            --env-left-flap: polygon(0 0, 50% 47%, 0 100%);
-            --env-right-flap: polygon(100% 0, 50% 47%, 100% 100%);
-            --env-bottom-flap: polygon(0 100%, 50% 47%, 100% 100%);
-            --env-text-bottom: 8vh;
-          }
-
-          @media (max-aspect-ratio: 4/5) {
-            :root {
-              /* Mobile: Convert to an elegant pocket-envelope to remove sharp triangles */
-              --env-top-h: 42%;
-              --env-left-flap: polygon(0 0, 50% 42%, 0 100%);
-              --env-right-flap: polygon(100% 0, 50% 42%, 100% 100%);
-              --env-bottom-flap: polygon(0 100%, 0 30%, 50% 42%, 100% 30%, 100% 100%);
-              --env-text-bottom: 12vh;
-            }
+          .golden-flower {
+            position: absolute;
+            background: linear-gradient(135deg, #C9A84C, #F5E6BE, #C9A84C, #8C6D23);
+            mask-image: url('/assets/kollsd-flowers-5718624.png');
+            mask-size: cover;
+            mask-repeat: no-repeat;
+            mask-position: center;
+            -webkit-mask-image: url('/assets/kollsd-flowers-5718624.png');
+            -webkit-mask-size: cover;
+            -webkit-mask-repeat: no-repeat;
+            -webkit-mask-position: center;
+            pointer-events: none;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.4));
           }
         `}
       </style>
@@ -151,66 +158,29 @@ export default function EnvelopeScreen({ onDone }: EnvelopeScreenProps) {
         <div className="absolute inset-0 z-[3] pointer-events-none">
           {/* Left Flap Wrapper */}
           <div className="absolute inset-0" style={{ filter: 'drop-shadow(8px 0 20px rgba(0,0,0,0.45))' }}>
-            <div className="flap absolute top-0 left-0 w-full h-full bg-[#1b3324]" style={{ clipPath: 'var(--env-left-flap)' }} />
+            <div className="flap absolute top-0 left-0 w-full h-full bg-[#1b3324]" style={{ clipPath: 'polygon(0 0, 50% 47%, 0 100%)' }} />
           </div>
           {/* Right Flap Wrapper */}
           <div className="absolute inset-0" style={{ filter: 'drop-shadow(-8px 0 20px rgba(0,0,0,0.45))' }}>
-            <div className="flap absolute top-0 right-0 w-full h-full bg-[#1b3324]" style={{ clipPath: 'var(--env-right-flap)' }} />
+            <div className="flap absolute top-0 right-0 w-full h-full bg-[#1b3324]" style={{ clipPath: 'polygon(100% 0, 50% 47%, 100% 100%)' }} />
           </div>
         </div>
 
         {/* z-index: 4 -> The Bottom Flap (so the card stays hidden in the "pocket"). */}
         <div className="absolute inset-0 z-[4] pointer-events-none" style={{ filter: 'drop-shadow(0 -8px 24px rgba(0,0,0,0.5))' }}>
-          <div className="flap absolute inset-0 bg-[#1b3324]" style={{ clipPath: 'var(--env-bottom-flap)' }} />
+          <div className="flap absolute inset-0 bg-[#1b3324]" style={{ clipPath: 'polygon(0 100%, 50% 47%, 100% 100%)' }} />
         </div>
 
         {/* Decorative Golden Foil Flowers */}
         <div className="absolute inset-0 z-[4] pointer-events-none overflow-hidden opacity-90">
-          {/* Top Right Corner */}
-          <div 
-            className="absolute top-0 right-0" 
-            style={{ 
-              width: 'clamp(300px, 60vw, 800px)', 
-              height: 'clamp(300px, 60vw, 800px)', 
-              maskImage: 'url(/assets/kollsd-flowers-5718624.png)',
-              maskSize: 'contain',
-              maskPosition: 'top right',
-              maskRepeat: 'no-repeat',
-              WebkitMaskImage: 'url(/assets/kollsd-flowers-5718624.png)',
-              WebkitMaskSize: 'contain',
-              WebkitMaskPosition: 'top right',
-              WebkitMaskRepeat: 'no-repeat',
-              background: 'linear-gradient(135deg, #C9A84C, #F5E6BE, #C9A84C, #8C6D23)',
-              filter: 'drop-shadow(0 4px 6px rgba(0,0,0,0.4))'
-            }} 
-          />
-          {/* Bottom Left Corner */}
-          <div 
-            className="absolute bottom-0 left-0" 
-            style={{ 
-              width: 'clamp(300px, 60vw, 800px)', 
-              height: 'clamp(300px, 60vw, 800px)', 
-              maskImage: 'url(/assets/kollsd-flowers-5718624.png)',
-              maskSize: 'contain',
-              maskPosition: 'bottom left',
-              maskRepeat: 'no-repeat',
-              WebkitMaskImage: 'url(/assets/kollsd-flowers-5718624.png)',
-              WebkitMaskSize: 'contain',
-              WebkitMaskPosition: 'bottom left',
-              WebkitMaskRepeat: 'no-repeat',
-              transform: 'scaleX(-1) scaleY(-1)', // Flips image to perfectly mirror the corner
-              background: 'linear-gradient(135deg, #C9A84C, #F5E6BE, #C9A84C, #8C6D23)',
-              filter: 'drop-shadow(0 4px 6px rgba(0,0,0,0.4))'
-            }} 
-          />
+          <div className="golden-flower" style={{ width: '100%', height: '100%', top: 0, left: 0 }} />
         </div>
 
         {/* z-index: 5 -> The Top Flap (closes over everything). */}
         <div className="absolute top-0 left-0 w-full h-full z-[5] pointer-events-none" style={{ perspective: '1400px' }}>
           <motion.div
-            className="absolute top-0 left-0 w-full origin-top"
+            className="absolute top-0 left-0 w-full h-[47%] origin-top"
             style={{
-              height: 'var(--env-top-h)',
               transformStyle: 'preserve-3d',
             }}
             animate={isOpening ? {
@@ -253,7 +223,6 @@ export default function EnvelopeScreen({ onDone }: EnvelopeScreenProps) {
         {/* ── Raised Gold Foil Typography (under seal) ── */}
         <motion.div
           className="envelope-text"
-          style={{ position: 'absolute', bottom: 'var(--env-text-bottom)', left: 0, right: 0, textAlign: 'center', zIndex: 4 }}
           animate={isOpening ? { opacity: 0, y: 15 } : { opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: isOpening ? 0 : 0.3 }}
         >
