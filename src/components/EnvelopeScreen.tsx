@@ -102,28 +102,31 @@ export default function EnvelopeScreen({ onDone }: EnvelopeScreenProps) {
 
           .envelope-text {
             position: absolute;
-            bottom: 8vh;
+            bottom: 10%;
             left: 0;
             right: 0;
             text-align: center;
             color: #f4ebd9;
             z-index: 8;
             pointer-events: none;
+            width: 100%;
           }
 
           .envelope-text p {
             font-family: 'Great Vibes', cursive;
-            font-size: 48px;
-            margin-bottom: 4px;
+            font-size: clamp(22px, 6vw, 48px);
+            margin-bottom: 6px;
             color: #F5E6BE;
             text-shadow: 0 4px 12px rgba(0, 0, 0, 0.8), 0 2px 4px rgba(0,0,0,0.6);
-            letter-spacing: 2px;
+            letter-spacing: 1px;
+            line-height: 1;
+            white-space: nowrap;
           }
 
           .envelope-text span {
             font-family: 'Cinzel', serif;
-            font-size: 16px;
-            letter-spacing: 8px;
+            font-size: clamp(8px, 2.2vw, 16px);
+            letter-spacing: 4px;
             text-transform: uppercase;
             font-weight: 600;
             color: #C9A84C;
