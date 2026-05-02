@@ -101,14 +101,9 @@ export default function EnvelopeScreen({ onDone }: EnvelopeScreenProps) {
           }
 
           .envelope-text {
-            position: absolute;
-            bottom: 12%; /* Perfect positioning */
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100vw; /* Stay within phone screen! */
+            width: 100%;
             text-align: center;
             color: #f4ebd9;
-            z-index: 8;
             pointer-events: none;
             padding: 0 20px;
           }
@@ -136,12 +131,6 @@ export default function EnvelopeScreen({ onDone }: EnvelopeScreenProps) {
             white-space: normal;
           }
 
-          @media (max-aspect-ratio: 4/5) {
-            .envelope-text {
-               bottom: 25%; /* Raise higher to clearly miss flowers */
-            }
-          }
-
           .golden-flower {
             position: absolute;
             background: linear-gradient(135deg, #C9A84C, #F5E6BE, #C9A84C, #8C6D23);
@@ -157,23 +146,25 @@ export default function EnvelopeScreen({ onDone }: EnvelopeScreenProps) {
             filter: drop-shadow(0 4px 6px rgba(0,0,0,0.4));
           }
 
-          .mobile-flower { display: none; }
+          .mobile-flower-container { display: none; }
+          
+          .mobile-flower-edge {
+             position: absolute;
+             top: 0; left: 0; width: 100%; height: 100%;
+             background: linear-gradient(135deg, #C9A84C, #F5E6BE, #C9A84C, #8C6D23);
+             mask-image: url('/assets/kollsd-flowers-5718624.png');
+             mask-size: auto 75dvh; /* Scale proportionally to screen height */
+             mask-repeat: no-repeat;
+             -webkit-mask-image: url('/assets/kollsd-flowers-5718624.png');
+             -webkit-mask-size: auto 75dvh;
+             -webkit-mask-repeat: no-repeat;
+             pointer-events: none;
+             filter: drop-shadow(0 4px 6px rgba(0,0,0,0.4));
+          }
 
           @media (max-aspect-ratio: 4/5) {
              .desktop-flower { display: none; }
-             .mobile-flower {
-                display: block;
-                position: absolute;
-                background: linear-gradient(135deg, #C9A84C, #F5E6BE, #C9A84C, #8C6D23);
-                mask-image: url('/assets/kollsd-flowers-5718624.png');
-                mask-size: contain;
-                mask-repeat: no-repeat;
-                -webkit-mask-image: url('/assets/kollsd-flowers-5718624.png');
-                -webkit-mask-size: contain;
-                -webkit-mask-repeat: no-repeat;
-                pointer-events: none;
-                filter: drop-shadow(0 4px 6px rgba(0,0,0,0.4));
-             }
+             .mobile-flower-container { display: block; }
           }
 
           .mobile-flower { display: none; }
@@ -224,9 +215,11 @@ export default function EnvelopeScreen({ onDone }: EnvelopeScreenProps) {
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[100vw] h-[100dvh] z-[4] pointer-events-none overflow-hidden opacity-90">
           <div className="golden-flower desktop-flower" style={{ width: '100%', height: '100%', top: 0, left: 0 }} />
           
-          {/* Beautiful mobile corners that won't stretch! */}
-          <div className="mobile-flower" style={{ width: 'clamp(200px, 60vw, 400px)', height: 'clamp(200px, 60vw, 400px)', top: '-5%', right: '-5%', maskPosition: 'top right', WebkitMaskPosition: 'top right' }} />
-          <div className="mobile-flower" style={{ width: 'clamp(200px, 60vw, 400px)', height: 'clamp(200px, 60vw, 400px)', bottom: '-5%', left: '-5%', maskPosition: 'bottom left', WebkitMaskPosition: 'bottom left', transform: 'scaleX(-1) scaleY(-1)' }} />
+          {/* Flawless mobile flowers - Native proportions, left and right edges mapped perfectly! */}
+          <div className="mobile-flower-container absolute inset-0">
+            <div className="mobile-flower-edge" style={{ maskPosition: 'left center', WebkitMaskPosition: 'left center' }} />
+            <div className="mobile-flower-edge" style={{ maskPosition: 'right center', WebkitMaskPosition: 'right center' }} />
+          </div>
         </div>
 
         {/* z-index: 5 -> The Top Flap (closes over everything). */}
@@ -264,24 +257,24 @@ export default function EnvelopeScreen({ onDone }: EnvelopeScreenProps) {
             />
 
             {/* z-index: 6 -> The Wax Seal embedded in the flap. */}
-            <div
-              className="absolute bottom-0 pointer-events-none"
-              style={{ transform: 'translateZ(2px)', left: '50%', marginLeft: '-37.5vw' }} /* Keep wax seal exactly in the center of the viewport */
-            >
+            <div className="absolute bottom-0 w-full flex justify-center pointer-events-none" style={{ transform: 'translateZ(2px)' }}>
               <WaxSeal />
             </div>
           </motion.div>
         </div>
 
         {/* ── Raised Gold Foil Typography (under seal) ── */}
-        <motion.div
-          className="envelope-text"
-          animate={isOpening ? { opacity: 0, y: 15 } : { opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, delay: isOpening ? 0 : 0.3 }}
-        >
-          <p>You are joyfully invited</p>
-          <span>to celebrate with us</span>
-        </motion.div>
+        <div className="absolute bottom-[20%] left-0 w-full z-[8] pointer-events-none flex justify-center">
+          <motion.div
+            className="envelope-text"
+            animate={isOpening ? { opacity: 0, y: 15 } : { opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: isOpening ? 0 : 0.3 }}
+            style={{ width: '100vw' }}
+          >
+            <p>You are joyfully invited</p>
+            <span>to celebrate with us</span>
+          </motion.div>
+        </div>
 
       </div>
 
