@@ -76,7 +76,7 @@ export default function EnvelopeHero() {
       </motion.div>
 
       {/* ─── Envelope ─── */}
-      <div className="envelope-scene relative z-10 w-full max-w-sm px-4">
+      <div className="envelope-scene relative z-10 w-full max-w-sm px-4 md:scale-125 lg:scale-[1.35] md:my-12 lg:my-20 transition-transform duration-500">
         <motion.div
           initial={{ opacity: 0, scale: 0.85, y: 30 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}

@@ -70,7 +70,7 @@ export default function RSVP() {
         initial={{ opacity: 0, y: 40 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.9, ease: 'easeOut' }}
-        className="max-w-sm mx-auto relative z-10"
+        className="max-w-sm md:max-w-xl lg:max-w-2xl mx-auto relative z-10"
       >
         <div className="text-center mb-10">
           <p className="text-xs tracking-[0.25em] uppercase mb-2" style={{ color: '#C9A84C', fontFamily: 'Lato' }}>
@@ -90,7 +90,7 @@ export default function RSVP() {
         </div>
 
         <div
-          className="rounded-3xl p-8 relative"
+          className="rounded-3xl p-8 md:p-12 relative"
           style={{
             background: 'linear-gradient(145deg, #3D5A50 0%, #2A4038 100%)',
             border: '1px solid rgba(201,168,76,0.3)',
@@ -142,7 +142,7 @@ export default function RSVP() {
                   >
                     Will you attend?
                   </label>
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="grid grid-cols-2 gap-3 md:gap-6">
                     {[
                       { value: 'yes', label: 'Joyfully Yes', icon: '✦' },
                       { value: 'no', label: 'Regretfully No', icon: '—' },

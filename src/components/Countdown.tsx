@@ -19,18 +19,17 @@ function CountBox({ value, label }: { value: number; label: string }) {
   return (
     <div className="flex flex-col items-center gap-2">
       <div
-        className="countdown-digit flex items-center justify-center"
-        style={{ width: '72px', height: '80px' }}
+        className="countdown-digit flex items-center justify-center w-14 h-16 sm:w-16 sm:h-20 md:w-20 md:h-24"
       >
         <span
-          className="font-serif font-light leading-none"
-          style={{ fontSize: '2.4rem', color: '#2D463E' }}
+          className="font-serif font-light leading-none text-3xl sm:text-4xl md:text-5xl"
+          style={{ color: '#2D463E' }}
         >
           {display}
         </span>
       </div>
       <span
-        className="text-xs tracking-[0.2em] uppercase"
+        className="text-[10px] sm:text-xs tracking-[0.2em] uppercase"
         style={{ color: '#6B7B73', fontFamily: 'Lato' }}
       >
         {label}
@@ -56,7 +55,7 @@ export default function Countdown() {
         initial={{ opacity: 0, y: 40 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.9, ease: 'easeOut' }}
-        className="max-w-md mx-auto text-center"
+        className="max-w-lg md:max-w-3xl mx-auto text-center"
       >
         {/* Section header */}
         <p
@@ -75,14 +74,14 @@ export default function Countdown() {
         </div>
 
         {/* Timer */}
-        <div className="flex items-start justify-center gap-4 flex-wrap">
+        <div className="flex items-start justify-center gap-2 sm:gap-4 flex-nowrap overflow-visible">
           <CountBox value={time.days} label="Days" />
-          <div className="font-serif text-3xl mt-3" style={{ color: '#C9A84C' }}>:</div>
+          <div className="font-serif text-2xl sm:text-3xl mt-3 sm:mt-5" style={{ color: '#C9A84C' }}>:</div>
           <CountBox value={time.hours} label="Hours" />
-          <div className="font-serif text-3xl mt-3" style={{ color: '#C9A84C' }}>:</div>
-          <CountBox value={time.minutes} label="Minutes" />
-          <div className="font-serif text-3xl mt-3" style={{ color: '#C9A84C' }}>:</div>
-          <CountBox value={time.seconds} label="Seconds" />
+          <div className="font-serif text-2xl sm:text-3xl mt-3 sm:mt-5" style={{ color: '#C9A84C' }}>:</div>
+          <CountBox value={time.minutes} label="Mins" />
+          <div className="font-serif text-2xl sm:text-3xl mt-3 sm:mt-5" style={{ color: '#C9A84C' }}>:</div>
+          <CountBox value={time.seconds} label="Secs" />
         </div>
 
         {/* Date badge */}

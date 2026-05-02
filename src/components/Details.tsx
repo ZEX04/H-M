@@ -96,41 +96,45 @@ export default function Details() {
         initial={{ opacity: 0, y: 40 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.9, ease: 'easeOut' }}
-        className="max-w-md mx-auto"
+        className="max-w-md lg:max-w-5xl mx-auto"
       >
-        {/* ── Location ── */}
-        <div className="text-center mb-8">
-          <p className="text-xs tracking-[0.25em] uppercase mb-2" style={{ color: '#C9A84C', fontFamily: 'Lato' }}>
-            The Venue
-          </p>
-          <h2 className="font-serif font-light text-3xl mb-2" style={{ color: '#2D463E' }}>
-            Location
-          </h2>
-          <div className="divider-ornament mb-8" style={{ maxWidth: '220px', margin: '0 auto 2rem' }}>
-            <span className="text-xs tracking-[0.25em] uppercase" style={{ color: '#6B7B73', fontFamily: 'Lato' }}>
-              where we celebrate
-            </span>
-          </div>
-        </div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
+          {/* ── Location ── */}
+          <div>
+            <div className="text-center mb-8">
+              <p className="text-xs tracking-[0.25em] uppercase mb-2" style={{ color: '#C9A84C', fontFamily: 'Lato' }}>
+                The Venue
+              </p>
+              <h2 className="font-serif font-light text-3xl mb-2" style={{ color: '#2D463E' }}>
+                Location
+              </h2>
+              <div className="divider-ornament mb-8" style={{ maxWidth: '220px', margin: '0 auto 2rem' }}>
+                <span className="text-xs tracking-[0.25em] uppercase" style={{ color: '#6B7B73', fontFamily: 'Lato' }}>
+                  where we celebrate
+                </span>
+              </div>
+            </div>
 
-        <div className="relative mb-16">
-          <MapPlaceholder />
-        </div>
-
-        {/* ── Timeline ── */}
-        <div className="text-center mb-8">
-          <p className="text-xs tracking-[0.25em] uppercase mb-2" style={{ color: '#C9A84C', fontFamily: 'Lato' }}>
-            Itinerary
-          </p>
-          <h2 className="font-serif font-light text-3xl mb-2" style={{ color: '#2D463E' }}>
-            Timeline
-          </h2>
-          <div className="divider-ornament mb-8" style={{ maxWidth: '220px', margin: '0 auto 2rem' }}>
-            <span className="text-xs tracking-[0.25em] uppercase" style={{ color: '#6B7B73', fontFamily: 'Lato' }}>
-              the evening's program
-            </span>
+            <div className="relative mb-8 lg:mb-0">
+              <MapPlaceholder />
+            </div>
           </div>
-        </div>
+
+          {/* ── Timeline ── */}
+          <div>
+            <div className="text-center mb-8">
+              <p className="text-xs tracking-[0.25em] uppercase mb-2" style={{ color: '#C9A84C', fontFamily: 'Lato' }}>
+                Itinerary
+              </p>
+              <h2 className="font-serif font-light text-3xl mb-2" style={{ color: '#2D463E' }}>
+                Timeline
+              </h2>
+              <div className="divider-ornament mb-8" style={{ maxWidth: '220px', margin: '0 auto 2rem' }}>
+                <span className="text-xs tracking-[0.25em] uppercase" style={{ color: '#6B7B73', fontFamily: 'Lato' }}>
+                  the evening's program
+                </span>
+              </div>
+            </div>
 
         {/* Timeline items */}
         <div className="relative">
@@ -189,6 +193,8 @@ export default function Details() {
                 </div>
               </motion.div>
             ))}
+              </div>
+            </div>
           </div>
         </div>
       </motion.div>

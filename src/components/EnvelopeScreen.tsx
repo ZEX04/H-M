@@ -102,7 +102,7 @@ export default function EnvelopeScreen({ onDone }: EnvelopeScreenProps) {
 
           .envelope-text p {
             font-family: 'Great Vibes', cursive;
-            font-size: 48px;
+            font-size: clamp(32px, 8vw, 64px);
             margin-bottom: 4px;
             color: #F5E6BE;
             text-shadow: 0 4px 12px rgba(0, 0, 0, 0.8), 0 2px 4px rgba(0,0,0,0.6);
@@ -111,7 +111,7 @@ export default function EnvelopeScreen({ onDone }: EnvelopeScreenProps) {
 
           .envelope-text span {
             font-family: 'Cinzel', serif;
-            font-size: 16px;
+            font-size: clamp(12px, 3vw, 20px);
             letter-spacing: 8px;
             text-transform: uppercase;
             font-weight: 600;
