@@ -34,8 +34,7 @@ export default function EnvelopeScreen({ onDone }: EnvelopeScreenProps) {
     >
       <style>
         {`
-          @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,600;1,700&display=swap');
-          .english-display { font-family: 'Playfair Display', serif; font-weight: 600; font-style: italic; }
+          @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cinzel:wght@400;600&display=swap');
 
           .intro-overlay {
             background-color: #1a1a1a;
@@ -92,80 +91,108 @@ export default function EnvelopeScreen({ onDone }: EnvelopeScreenProps) {
 
           .envelope-text {
             position: absolute;
-            top: calc(50% + min(310px, 38vw)) !important;
+            bottom: 8vh;
             left: 0;
             right: 0;
             text-align: center;
             color: #f4ebd9;
-            font-family: serif;
             z-index: 8;
             pointer-events: none;
           }
 
           .envelope-text p {
-            font-size: 24px;
-            font-style: italic;
-            margin-bottom: 8px;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+            font-family: 'Great Vibes', cursive;
+            font-size: 48px;
+            margin-bottom: 4px;
+            color: #F5E6BE;
+            text-shadow: 0 4px 12px rgba(0, 0, 0, 0.8), 0 2px 4px rgba(0,0,0,0.6);
+            letter-spacing: 2px;
           }
 
           .envelope-text span {
-            font-size: 14px;
-            letter-spacing: 4px;
+            font-family: 'Cinzel', serif;
+            font-size: 16px;
+            letter-spacing: 8px;
             text-transform: uppercase;
-            opacity: 0.85;
+            font-weight: 600;
+            color: #C9A84C;
+            opacity: 0.95;
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
+          }
+
+          .golden-flower {
+            position: absolute;
+            background: linear-gradient(135deg, #C9A84C, #F5E6BE, #C9A84C, #8C6D23);
+            mask-image: url('/assets/kollsd-flowers-5718624.png');
+            mask-size: cover;
+            mask-repeat: no-repeat;
+            mask-position: center;
+            -webkit-mask-image: url('/assets/kollsd-flowers-5718624.png');
+            -webkit-mask-size: cover;
+            -webkit-mask-repeat: no-repeat;
+            -webkit-mask-position: center;
+            pointer-events: none;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.4));
           }
         `}
       </style>
 
       {/* Main Container */}
       <div className="luxury-envelope relative">
-        
+
         {/* z-index: 1 -> The Back Panel of the envelope (solid dark emerald green). */}
         <div className="absolute inset-0 z-[1] bg-[#1b3324]" />
 
         {/* z-index: 3 -> The Left and Right Flaps. */}
-        <div className="absolute inset-0 z-[3] pointer-events-none overflow-hidden">
-          {/* Left Flap */}
-          <div className="flap absolute top-0 left-0 w-full h-full bg-[#1b3324]" style={{ clipPath: 'polygon(0 0, 50% 47%, 0 100%)' }} />
-          {/* Right Flap */}
-          <div className="flap absolute top-0 right-0 w-full h-full bg-[#1b3324]" style={{ clipPath: 'polygon(100% 0, 50% 47%, 100% 100%)' }} />
+        <div className="absolute inset-0 z-[3] pointer-events-none">
+          {/* Left Flap Wrapper */}
+          <div className="absolute inset-0" style={{ filter: 'drop-shadow(8px 0 20px rgba(0,0,0,0.45))' }}>
+            <div className="flap absolute top-0 left-0 w-full h-full bg-[#1b3324]" style={{ clipPath: 'polygon(0 0, 50% 47%, 0 100%)' }} />
+          </div>
+          {/* Right Flap Wrapper */}
+          <div className="absolute inset-0" style={{ filter: 'drop-shadow(-8px 0 20px rgba(0,0,0,0.45))' }}>
+            <div className="flap absolute top-0 right-0 w-full h-full bg-[#1b3324]" style={{ clipPath: 'polygon(100% 0, 50% 47%, 100% 100%)' }} />
+          </div>
         </div>
 
         {/* z-index: 4 -> The Bottom Flap (so the card stays hidden in the "pocket"). */}
-        <div className="absolute inset-0 z-[4] pointer-events-none" style={{ filter: 'drop-shadow(0 -4px 16px rgba(0,0,0,0.25))' }}>
-          <div className="flap shadow-flap absolute inset-0 bg-[#1b3324]" 
-               style={{ clipPath: 'polygon(0 100%, 50% 47%, 100% 100%)' }} />
+        <div className="absolute inset-0 z-[4] pointer-events-none" style={{ filter: 'drop-shadow(0 -8px 24px rgba(0,0,0,0.5))' }}>
+          <div className="flap absolute inset-0 bg-[#1b3324]" style={{ clipPath: 'polygon(0 100%, 50% 47%, 100% 100%)' }} />
+        </div>
+
+        {/* Decorative Golden Foil Flowers */}
+        <div className="absolute inset-0 z-[4] pointer-events-none overflow-hidden opacity-90">
+          <div className="golden-flower" style={{ width: '100%', height: '100%', top: 0, left: 0 }} />
         </div>
 
         {/* z-index: 5 -> The Top Flap (closes over everything). */}
         <div className="absolute top-0 left-0 w-full h-full z-[5] pointer-events-none" style={{ perspective: '1400px' }}>
           <motion.div
             className="absolute top-0 left-0 w-full h-[47%] origin-top"
-            style={{ 
-              transformStyle: 'preserve-3d', 
+            style={{
+              transformStyle: 'preserve-3d',
             }}
-            animate={isOpening ? { 
+            animate={isOpening ? {
               rotateX: -40,
               filter: 'drop-shadow(0 40px 50px rgba(0, 0, 0, 0.65))'
-            } : { 
+            } : {
               rotateX: 0,
-              filter: 'drop-shadow(0 8px 24px rgba(0, 0, 0, 0.25))'
+              filter: 'drop-shadow(0 12px 36px rgba(0, 0, 0, 0.65))'
             }}
             transition={{ duration: 0.9, ease: [0.4, 0, 0.2, 1] }}
           >
             {/* Front of Top Flap */}
-            <div 
+            <div
               className="flap shadow-flap absolute inset-0 bg-[#1b3324]"
-              style={{ 
+              style={{
                 clipPath: 'polygon(0 0, 100% 0, 50% 100%)',
                 backfaceVisibility: 'hidden'
               }}
             />
             {/* Back of Top Flap (Visible when open) */}
-            <div 
+            <div
               className="flap absolute inset-0 bg-[#182d20]"
-              style={{ 
+              style={{
                 clipPath: 'polygon(0 0, 100% 0, 50% 100%)',
                 transform: 'rotateX(180deg)',
                 backfaceVisibility: 'hidden'
@@ -184,18 +211,18 @@ export default function EnvelopeScreen({ onDone }: EnvelopeScreenProps) {
 
         {/* ── Raised Gold Foil Typography (under seal) ── */}
         <motion.div
-           className="envelope-text english-display"
-           animate={isOpening ? { opacity: 0, y: 15 } : { opacity: 1, y: 0 }}
-           transition={{ duration: 0.4, delay: isOpening ? 0 : 0.3 }}
+          className="envelope-text"
+          animate={isOpening ? { opacity: 0, y: 15 } : { opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay: isOpening ? 0 : 0.3 }}
         >
           <p>You are joyfully invited</p>
           <span>to celebrate with us</span>
         </motion.div>
 
       </div>
-      
+
       {/* No Tap Hint */}
-      
+
     </div>
   )
 }

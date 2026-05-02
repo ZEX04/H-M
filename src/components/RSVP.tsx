@@ -8,17 +8,37 @@ export default function RSVP() {
   const inView = useInView(ref, { once: true, margin: '-80px' })
   const [name, setName] = useState('')
   const [attendance, setAttendance] = useState<Attendance>('')
+  const [message, setMessage] = useState('')
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!name.trim() || !attendance) return
     setLoading(true)
-    setTimeout(() => {
-      setLoading(false)
+    
+    try {
+      const scriptUrl = 'https://script.google.com/macros/s/AKfycbzPl-opGRDlEEDzOG39iaPMMfn2WvAm4joQ_-T_cBhprpLBV1Tj-a6vlKcTur-uMeoWeQ/exec'
+      
+      const formData = new URLSearchParams()
+      formData.append('name', name)
+      formData.append('attendance', attendance)
+      formData.append('message', message)
+
+      await fetch(scriptUrl, {
+        method: 'POST',
+        mode: 'no-cors', // no-cors is required since Apps Script uses redirects
+        body: formData,
+      })
+      
+      // Since no-cors prevents reading the response, we assume success if no exception was thrown.
       setSubmitted(true)
-    }, 1200)
+    } catch (error) {
+      console.error('Error submitting RSVP:', error)
+      alert("Something went wrong with your submission. Please try again.")
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -63,17 +83,16 @@ export default function RSVP() {
             className="divider-ornament mb-2"
             style={{ maxWidth: '220px', margin: '0 auto' }}
           >
-            <span className="text-xs tracking-[0.25em] uppercase" style={{ color: '#6B7B73', fontFamily: 'Lato' }}>
-              kindly reply by May 1st
+            <span className="text-xs" style={{ color: 'rgba(201,168,76,0.4)' }}>
+              ✦
             </span>
           </div>
         </div>
 
-        {/* Solid Dark Green Card */}
         <div
           className="rounded-3xl p-8 relative"
           style={{
-            background: 'linear-gradient(145deg, #2D463E 0%, #1C2B27 100%)',
+            background: 'linear-gradient(145deg, #3D5A50 0%, #2A4038 100%)',
             border: '1px solid rgba(201,168,76,0.3)',
             boxShadow: '0 20px 60px rgba(0,0,0,0.25)',
           }}
@@ -152,6 +171,45 @@ export default function RSVP() {
                     ))}
                   </div>
                 </div>
+
+                {/* Optional Message Field */}
+                <AnimatePresence>
+                  {attendance === 'yes' && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0, marginTop: 0 }}
+                      animate={{ opacity: 1, height: 'auto', marginTop: 12 }}
+                      exit={{ opacity: 0, height: 0, marginTop: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="overflow-hidden"
+                    >
+                      <label
+                        htmlFor="rsvp-message"
+                        className="block text-xs tracking-[0.2em] uppercase mb-2"
+                        style={{ color: '#C9A84C', fontFamily: 'Lato' }}
+                      >
+                        Message for the couple (Optional)
+                      </label>
+                      <textarea
+                        id="rsvp-message"
+                        placeholder="Write something special..."
+                        value={message}
+                        onChange={e => setMessage(e.target.value)}
+                        rows={3}
+                        className="form-input transition-all w-full resize-none"
+                        style={{
+                          background: 'rgba(253,251,247,0.05)',
+                          border: '1px solid rgba(253,251,247,0.2)',
+                          color: '#FDFBF7',
+                          outline: 'none',
+                          borderRadius: '0.75rem',
+                          padding: '0.75rem 1rem'
+                        }}
+                        onFocus={e => e.target.style.borderColor = '#C9A84C'}
+                        onBlur={e => e.target.style.borderColor = 'rgba(253,251,247,0.2)'}
+                      />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
 
                 {/* Submit */}
                 <motion.button

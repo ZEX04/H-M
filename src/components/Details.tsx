@@ -5,20 +5,14 @@ const timelineItems = [
   {
     time: '5:00 PM',
     title: 'Ceremony',
-    desc: 'The Katb el Kitab ceremony with the Sheikh and close family.',
+    desc: 'Katb Kitab ceremony',
     icon: '☽',
   },
   {
-    time: '7:00 PM',
+    time: '6:00 PM',
     title: 'Photos',
     desc: 'Garden photography session with the couple and family.',
     icon: '✦',
-  },
-  {
-    time: '8:00 PM',
-    title: 'Dinner',
-    desc: 'An elegant dinner reception celebrating the blessed union.',
-    icon: '❋',
   },
 ]
 
