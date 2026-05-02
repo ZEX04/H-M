@@ -122,16 +122,45 @@ export default function EnvelopeScreen({ onDone }: EnvelopeScreenProps) {
 
           :root {
             --env-center-y: 47%;
+            --env-bottom-y: 47%;
+            --env-text-bottom: 8vh;
           }
 
           @media (max-aspect-ratio: 4/5) {
             :root {
               --env-center-y: 55vw;
+              --env-bottom-y: calc(100% - 60vw);
+              --env-text-bottom: 14vh;
+            }
+          }
+
+          .golden-flower-wrapper {
+            position: absolute;
+            inset: 0;
+            z-index: 4;
+            pointer-events: none;
+            overflow: hidden;
+            opacity: 0.9;
+          }
+
+          @media (max-aspect-ratio: 4/5) {
+            .golden-flower-wrapper {
+              transform: rotate(90deg);
+              width: 100vh !important;
+              height: 100vw !important;
+              top: 50% !important;
+              left: 50% !important;
+              margin-left: -50vh;
+              margin-top: -50vw;
             }
           }
 
           .golden-flower {
             position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
             background: linear-gradient(135deg, #C9A84C, #F5E6BE, #C9A84C, #8C6D23);
             mask-image: url('/assets/kollsd-flowers-5718624.png');
             mask-size: cover;
@@ -143,13 +172,6 @@ export default function EnvelopeScreen({ onDone }: EnvelopeScreenProps) {
             -webkit-mask-position: center;
             pointer-events: none;
             filter: drop-shadow(0 4px 6px rgba(0,0,0,0.4));
-          }
-
-          @media (max-aspect-ratio: 4/5) {
-            .golden-flower {
-              mask-size: 150vw auto;
-              -webkit-mask-size: 150vw auto;
-            }
           }
         `}
       </style>
@@ -164,22 +186,22 @@ export default function EnvelopeScreen({ onDone }: EnvelopeScreenProps) {
         <div className="absolute inset-0 z-[3] pointer-events-none">
           {/* Left Flap Wrapper */}
           <div className="absolute inset-0" style={{ filter: 'drop-shadow(8px 0 20px rgba(0,0,0,0.45))' }}>
-            <div className="flap absolute top-0 left-0 w-full h-full bg-[#1b3324]" style={{ clipPath: 'polygon(0 0, 50% var(--env-center-y), 0 100%)' }} />
+            <div className="flap absolute top-0 left-0 w-full h-full bg-[#1b3324]" style={{ clipPath: 'polygon(0 0, 50% var(--env-center-y), 50% var(--env-bottom-y), 0 100%)' }} />
           </div>
           {/* Right Flap Wrapper */}
           <div className="absolute inset-0" style={{ filter: 'drop-shadow(-8px 0 20px rgba(0,0,0,0.45))' }}>
-            <div className="flap absolute top-0 right-0 w-full h-full bg-[#1b3324]" style={{ clipPath: 'polygon(100% 0, 50% var(--env-center-y), 100% 100%)' }} />
+            <div className="flap absolute top-0 right-0 w-full h-full bg-[#1b3324]" style={{ clipPath: 'polygon(100% 0, 50% var(--env-center-y), 50% var(--env-bottom-y), 100% 100%)' }} />
           </div>
         </div>
 
         {/* z-index: 4 -> The Bottom Flap (so the card stays hidden in the "pocket"). */}
         <div className="absolute inset-0 z-[4] pointer-events-none" style={{ filter: 'drop-shadow(0 -8px 24px rgba(0,0,0,0.5))' }}>
-          <div className="flap absolute inset-0 bg-[#1b3324]" style={{ clipPath: 'polygon(0 100%, 50% var(--env-center-y), 100% 100%)' }} />
+          <div className="flap absolute inset-0 bg-[#1b3324]" style={{ clipPath: 'polygon(0 100%, 50% var(--env-bottom-y), 100% 100%)' }} />
         </div>
 
         {/* Decorative Golden Foil Flowers */}
-        <div className="absolute inset-0 z-[4] pointer-events-none overflow-hidden opacity-90">
-          <div className="golden-flower" style={{ width: '100%', height: '100%', top: 0, left: 0 }} />
+        <div className="golden-flower-wrapper">
+          <div className="golden-flower" />
         </div>
 
         {/* z-index: 5 -> The Top Flap (closes over everything). */}
@@ -230,6 +252,7 @@ export default function EnvelopeScreen({ onDone }: EnvelopeScreenProps) {
         {/* ── Raised Gold Foil Typography (under seal) ── */}
         <motion.div
           className="envelope-text"
+          style={{ position: 'absolute', bottom: 'var(--env-text-bottom)', left: 0, right: 0, textAlign: 'center', zIndex: 4 }}
           animate={isOpening ? { opacity: 0, y: 15 } : { opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: isOpening ? 0 : 0.3 }}
         >
