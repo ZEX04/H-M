@@ -148,16 +148,15 @@ export default function EnvelopeScreen({ onDone }: EnvelopeScreenProps) {
 
           .mobile-flower-container { display: none; }
           
-          .mobile-flower-edge {
+          .mobile-flower-item {
              position: absolute;
-             top: 0; left: 0; width: 100%; height: 100%;
              background: linear-gradient(135deg, #C9A84C, #F5E6BE, #C9A84C, #8C6D23);
-             mask-image: url('/assets/kollsd-flowers-5718624.png');
-             mask-size: auto 100dvh; /* Size it up to massive limits! */
+             mask-size: contain;
              mask-repeat: no-repeat;
-             -webkit-mask-image: url('/assets/kollsd-flowers-5718624.png');
-             -webkit-mask-size: auto 100dvh;
+             mask-position: center;
+             -webkit-mask-size: contain;
              -webkit-mask-repeat: no-repeat;
+             -webkit-mask-position: center;
              pointer-events: none;
              filter: drop-shadow(0 4px 6px rgba(0,0,0,0.4));
           }
@@ -192,17 +191,45 @@ export default function EnvelopeScreen({ onDone }: EnvelopeScreenProps) {
           <div className="flap absolute inset-0 bg-[#1b3324]" style={{ clipPath: 'polygon(0 100%, 50% 47%, 100% 100%)' }} />
         </div>
 
-        {/* Decorative Golden Foil Flowers (Desktop) */}
         {/* Decorative Golden Foil Flowers (Desktop & Mobile) */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[100vw] h-[100dvh] z-[4] pointer-events-none overflow-hidden opacity-90">
           <div className="golden-flower desktop-flower" style={{ width: '100%', height: '100%', top: 0, left: 0 }} />
           
           <div className="mobile-flower-container absolute top-0 left-0 w-full h-full">
-            <div className="mobile-flower-edge" style={{ 
-              maskPosition: 'left center', 
-              WebkitMaskPosition: 'left center',
-              transform: 'scale(1.6) translate(-20%, 8%)',
-              transformOrigin: 'left center'
+            {/* Bottom-Left side */}
+            <div className="mobile-flower-item" style={{ 
+              maskImage: "url('/assets/3.png')",
+              WebkitMaskImage: "url('/assets/3.png')",
+              width: '65vw', height: '75vh',
+              left: '-10vw', top: '70%',
+              transform: 'translateY(-50%)'
+            }} />
+
+            {/* Bottom-Right side */}
+            <div className="mobile-flower-item" style={{ 
+              maskImage: "url('/assets/3.png')",
+              WebkitMaskImage: "url('/assets/3.png')",
+              width: '65vw', height: '75vh',
+              right: '-10vw', top: '70%',
+              transform: 'scaleX(-1) translateY(-50%)'
+            }} />
+
+            {/* Top-Left side */}
+            <div className="mobile-flower-item" style={{ 
+              maskImage: "url('/assets/3.png')",
+              WebkitMaskImage: "url('/assets/3.png')",
+              width: '65vw', height: '75vh',
+              left: '-10vw', top: '30%',
+              transform: 'scaleY(-1) translateY(50%)'
+            }} />
+
+            {/* Top-Right side */}
+            <div className="mobile-flower-item" style={{ 
+              maskImage: "url('/assets/3.png')",
+              WebkitMaskImage: "url('/assets/3.png')",
+              width: '65vw', height: '75vh',
+              right: '-10vw', top: '30%',
+              transform: 'scaleX(-1) scaleY(-1) translateY(50%)'
             }} />
           </div>
         </div>
@@ -231,6 +258,7 @@ export default function EnvelopeScreen({ onDone }: EnvelopeScreenProps) {
                 backfaceVisibility: 'hidden'
               }}
             />
+
             {/* Back of Top Flap (Visible when open) */}
             <div
               className="flap absolute inset-0 bg-[#182d20]"
